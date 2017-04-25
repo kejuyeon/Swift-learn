@@ -173,9 +173,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 ```
 
-### CustomCell 만들기 
+### Custom Cell 만들기 
 
-> Main.Stroyboard 에서 CunstomCell 만들기
+> Main.Stroyboard 에서 ReplyViewCell 만들기
 
 ```
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
