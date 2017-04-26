@@ -216,25 +216,63 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 ```
 override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
 
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 89
-    }
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return 5
+}
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell") // 기본셀
-//        cell.textLabel?.text = "test"
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyViewCell", for: indexPath) as! ReplyViewCell
-        return cell
+override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 89
+}
+
+
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//  let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell") // 기본셀
+//  cell.textLabel?.text = "test"
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyViewCell", for: indexPath) as! ReplyViewCell
+    return cell
+}
+```
+
+
+
+## 페이지 전환시에 데이터 넘기기
+
+### Storyboard 에서 페이지 전환 설정
+
+> Storyboard Segue
+> Identifier <Segue 값 설정>
+
+```
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "DetailSegue" {
+        let vc = segue.destination as! DetailViewController
+        vc.urlString = "https://www.naver.com/"
     }
+}
+```
+
+### 코드로 페이지 전환 설정
+
+> New > File > ViewController 생성
+
+```
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let webVC = WebViewController()
+    webVC.urlStr = "https://www.naver.com"
+    self.navigationController?.pushViewController(webVC, animated: true)
+
+}
+```
+
+
+WebViewController.swift
+
+```
+var urlStr: String?
 ```
