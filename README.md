@@ -276,3 +276,15 @@ WebViewController.swift
 ```
 var urlStr: String?
 ```
+
+
+## modalView 만들기
+
+```
+let modalVC = UIViewController()
+let modalView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+modalView.backgroundColor = UIColor.cyan
+modalVC.view = modalView
+
+self.present(modalVC, animated: true, completion: nil)
+```
