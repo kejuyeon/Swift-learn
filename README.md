@@ -205,3 +205,36 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 ```
 
 
+## NavigationController 추가
+
+> 메뉴에서  Editor > Embed in Navigation Controller 추가
+
+시작 Controller 변경 Attributes Inspector > Is Initial View Controller 체크
+
+
+### TableViewController 생성
+
+```
+override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 89
+    }
+
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell") // 기본셀
+//        cell.textLabel?.text = "test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyViewCell", for: indexPath) as! ReplyViewCell
+        return cell
+    }
+```
